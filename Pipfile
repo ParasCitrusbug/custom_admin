@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+pillow = "*"
+psycopg2 = "*"
+django-crispy-forms = "*"
+django-widget-tweaks = "*"
+django-filter = "*"
+django-datatables-too = "*"
+django-extra-views = "*"
+django-multi-form-view = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"

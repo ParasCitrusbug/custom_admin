@@ -1,0 +1,57 @@
+{% extends 'core/change_form.html' %} 
+{% load static %} 
+{% load widget_tweaks %}
+{% load admin_extras %} 
+{% load misc_filters %} 
+{% load crispy_forms_filters %}
+{% load i18n %} 
+{% block page_content %}
+<form
+	id="{{ opts.model_name }}-form"
+	action=""
+	method="post"
+	enctype="multipart/form-data"
+	autocomplete="off"
+>
+	{% include "core/partials/form_hidden_fields.html" %}
+
+	<div class="ibox float-e-margins">
+		{% include "core/partials/ibox_title.html" with ibox_title="Create User" icon_class="fas fa-sign-in-alt" only %}
+
+		<div class="ibox-content">
+      <div class="row">
+        <div class="col-sm-6">{{ form.email|as_crispy_field }}</div>
+				<div class="col-sm-6">{{ form.username|as_crispy_field }}</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-6">{{ form.first_name|as_crispy_field }}</div>
+				<div class="col-sm-6">{{ form.last_name|as_crispy_field }}</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-6">{{ form.is_verified|as_crispy_field }}</div>
+				<div class="col-sm-6">{{ form.profile_image|as_crispy_field }}</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">{{ form.password1|as_crispy_field }}</div>
+				<div class="col-sm-6">{{ form.password2|as_crispy_field }}</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">{{ form.is_active|as_crispy_field }}</div>
+				<div class="col-sm-6">{{ form.is_new_user|as_crispy_field }}</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">{{ form.is_superuser|as_crispy_field }}</div>
+			</div>
+		</div>
+		<!-- /ibox-content -->
+	</div>
+	<!-- /ibox -->
+
+	{% include "core/partials/form_footer.html" %}
+</form>
+{% endblock %} {% block js %} {{ block.super }}
+<script src="{% static 'core/js/userroles.js' %}"></script>
+
+{% endblock %}
