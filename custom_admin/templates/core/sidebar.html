@@ -23,51 +23,14 @@
                 </li>
       {% endif %}
 
-      {% if perms.core.add_menus or perms.core.view_menus or perms.core.change_menus or perms.core.delete_menus or request.user.is_superuser %}
-                <li {% if 'onboardingquestion/' in request.path %} class="active" {% endif %}>
-                    <a href="#">
-                        <i class="fa fa-credit-card fa-fw fa-2x"></i>
-                        <span class="nav-label">OnBoarding-Questions</span>
-                    </a>
-                </li>
-      {% endif %}
-
       {% if perms.core.add_user or perms.core.view_user or perms.core.change_user or perms.core.delete_user or request.user.is_superuser %}
-                <li {% if 'foodorigin/' in request.path %}class="active" {% endif %}>
-                    <a href="#">
+                <li {% if 'employees/' in request.path %}class="active" {% endif %}>
+                    <a href="{% url 'employee:employee-list' %}">
                         <i class="fa fa-user fa-fw fa-2x"></i>
-                        <span class="nav-label">Food-Origin</span>
-                    </a>
-                </li>
-      {% endif %}
-
-      {% if perms.core.add_user or perms.core.view_user or perms.core.change_user or perms.core.delete_user or request.user.is_superuser %}
-                <li {% if 'foodingredient/' in request.path %}class="active" {% endif %}>
-                    <a href="#">
-                        <i class="fa fa-user fa-fw fa-2x"></i>
-                        <span class="nav-label">Food-Ingredient</span>
-                      </a>
-                </li>
-      {% endif %}
-
-      {% if perms.core.add_user or perms.core.view_user or perms.core.change_user or perms.core.delete_user or request.user.is_superuser %}
-                <li {% if 'foodcuisine/' in request.path %}class="active" {% endif %}>
-                    <a href="#">
-                        <i class="fa fa-user fa-fw fa-2x"></i>
-                        <span class="nav-label">Food-Cuisine</span>
-                    </a>
-                </li>
-      {% endif %}
-
-      {% if perms.core.add_user or perms.core.view_user or perms.core.change_user or perms.core.delete_user or request.user.is_superuser %}
-                <li {% if 'foodcuisine/' in request.path %}class="active" {% endif %}>
-                    <a href="#">
-                        <i class="fa fa-user fa-fw fa-2x"></i>
-                        <span class="nav-label">Article</span>
+                        <span class="nav-label">Employee</span>
                     </a>
                 </li>
       {% endif %}
     </ul>
   </div>
 </nav>
-foodcuisine

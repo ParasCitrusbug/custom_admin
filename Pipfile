@@ -13,6 +13,7 @@ django-filter = "*"
 django-datatables-too = "*"
 django-extra-views = "*"
 django-multi-form-view = "*"
+crispy-bootstrap4 = "*"
 
 [dev-packages]
 

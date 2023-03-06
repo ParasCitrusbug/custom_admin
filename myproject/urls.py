@@ -18,10 +18,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
 
-from employee import urls
 
 urlpatterns = [
     path("superadmin/", admin.site.urls),
     path("admin/", include("custom_admin.urls")),
-    path("employee/", include("employee.urls"), name="employee"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -10,3 +10,11 @@ from .users import (
     UserDeleteView,
     UserListAjaxView,
 )
+from .employees import (
+    EmployeeCreateView,
+    EmployeeDeleteView,
+    EmployeeDetailView,
+    EmployeeListAjaxView,
+    EmployeeListView,
+    EmployeeUpdateView,
+)

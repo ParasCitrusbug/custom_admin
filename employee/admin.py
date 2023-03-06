@@ -1,7 +1,5 @@
 from django.contrib import admin
 
-from .models import EmployeeData, UserData
+from employee import models
 
-# Register your models here.
-admin.site.register(EmployeeData)
-admin.site.register(UserData)
+admin.site.register(models.Employee)

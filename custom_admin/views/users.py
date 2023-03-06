@@ -49,7 +49,7 @@ class UserDetailView(MyDetailView):
     """
 
     model = User
-    template_name = "core/adminuser/user_detail.html"
+    template_name = "core/adminuser/user_details.html"
     permission_required = ("core.view_user",)
 
     def get_context_data(self, **kwargs):

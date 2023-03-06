@@ -23,7 +23,7 @@ DEPARTMENT_CHOICES = (
 )
 
 
-class EmployeeData(ActivityTracking):
+class Employee(ActivityTracking):
     """Employee data models"""
 
     id = models.UUIDField(
@@ -40,30 +40,12 @@ class EmployeeData(ActivityTracking):
 
     def __str__(self) -> str:
         return self.name
+    
+    
+    class Meta:
+        verbose_name = "Employee"
+        verbose_name_plural = "Employees"
+        db_table = "employee"
 
 
-CITY_CHOICES = (
-    ("Rajkot", "Rajkot"),
-    ("Ahmadabad", "Ahmadabad"),
-    ("Amreli", "Amreli"),
-    ("Baroda", "Baroda"),
-)
 
-
-class UserData(ActivityTracking):
-    """User data models"""
-
-    id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4, editable=False, auto_created=True
-    )
-    name = models.CharField(max_length=20)
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=100, null=False, blank=False)
-    city = models.CharField(max_length=16, choices=CITY_CHOICES, default="Rajkot")
-
-    def __str__(self) -> str:
-        return self.name
-
-    def save(self, *args, **kwargs):
-        self.password = make_password(self.password)
-        super(UserData, self).save(*args, **kwargs)

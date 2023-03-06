@@ -38,13 +38,16 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "employee",
-    'user',
-    "custom_admin",
     "crispy_forms",
+    "custom_admin",
+    'user',
+    "employee",
     "widget_tweaks",
     "django_filters",
+    "crispy_bootstrap4",
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -127,7 +130,7 @@ USE_I18N = True
 USE_TZ = True
 
 
-CRISPY_TEMPLATE_PACK = "bootstrap4"
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 

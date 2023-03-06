@@ -3,6 +3,8 @@ import uuid
 from django.db import models
 from dataclasses import dataclass, field
 from django.contrib.auth.models import AbstractUser, UserManager
+
+from employee.models import ActivityTracking
 # Create your models here.
 @dataclass(frozen=True)
 class UserID:
@@ -12,15 +14,6 @@ class UserID:
 
     id: uuid.UUID = field(init=False, default_factory=uuid.uuid4)
 
-class ActivityTracking(models.Model):
-    """for Activity check user and employee data"""
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    is_active = models.BooleanField(default=True)
-
-    class Meta:
-        abstract = True
 
 class UserManagerAutoID(UserManager):
     """

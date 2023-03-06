@@ -41,14 +41,8 @@ def as_json(obj):
 def admin_urlname(value, arg):
     if value.model_name == "user":
         pattern = "%s:%s-%s" % ("user", "user", arg)
-    if value.model_name == "onboardingquestion":
-        pattern = "%s:%s-%s" % ("onboardingquestion", "onboardingquestion", arg)
-    if value.model_name == "foodorigin":
-        pattern = "%s:%s-%s" % ("foodorigin", "foodorigin", arg)
-    if value.model_name == "foodingredient":
-        pattern = "%s:%s-%s" % ("foodingredient", "foodingredient", arg)
-    if value.model_name == "article":
-        pattern = "%s:%s-%s" % ("article", "article", arg)
+    if value.model_name == "employee":
+        pattern = "%s:%s-%s" % ("employee", "employee", arg)
     else:
         pattern = "%s:%s-%s" % (value.app_label, value.model_name, arg)
     return pattern
