@@ -66,14 +66,23 @@ class MyUserCreationForm(UserCreationForm):
         return instance
 
 
-class UserChangeForm(UserChangeForm,UserCreationForm):
+class UserChangeForm(UserChangeForm, UserCreationForm):
     """Custom form to change User"""
 
     profile_image = forms.ImageField(widget=forms.FileInput, required=False)
 
     class Meta(UserChangeForm.Meta):
         model = User
-        fields = ["email","username","first_name","last_name","is_verified","is_new_user","is_active","is_superuser"]
+        fields = [
+            "email",
+            "username",
+            "first_name",
+            "last_name",
+            "is_verified",
+            "is_new_user",
+            "is_active",
+            "is_superuser",
+        ]
 
     def __init__(self, user, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -86,7 +95,7 @@ class UserChangeForm(UserChangeForm,UserCreationForm):
     def clean(self):
         cleaned_data = super(UserChangeForm, self).clean()
         email = cleaned_data.get("email").strip().lower()
-        
+
         full_name = cleaned_data.get("first_name")
         if not email:
             raise forms.ValidationError("Please add email.")

@@ -40,12 +40,8 @@ class Employee(ActivityTracking):
 
     def __str__(self) -> str:
         return self.name
-    
-    
+
     class Meta:
         verbose_name = "Employee"
         verbose_name_plural = "Employees"
         db_table = "employee"
-
-
-

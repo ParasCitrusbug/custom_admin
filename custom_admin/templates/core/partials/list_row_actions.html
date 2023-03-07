@@ -12,7 +12,13 @@
        class="btn btn-danger btn-xs btn-delete"><i class="fas fa-trash-alt"></i></a>
 {% endif %}
 
+{% if has_view_permission %}
+    <a data-title="{{ o }}" title="Detail" href="{% url opts|admin_urlname:'detail' o.id %}"
+       class="btn btn-success btn-xs "><i class="fas fa-solid fa-info"></i></a>
+{% endif %}
+
 {% if has_gallery_permission %}
     <a data-title="{{ o }}" title="Delete" href="{% url opts|admin_urlname:'gallery' %}"
        class="btn btn-success btn-xs btn-delete"><i class="fas fa-picture-o"></i></a>
 {% endif %}
+

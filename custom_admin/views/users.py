@@ -32,6 +32,7 @@ from custom_admin.views.generic import (
     MyDeleteView,
 )
 from user.models import User
+from employee.models import Employee
 
 
 class IndexView(LoginRequiredMixin, TemplateView):
@@ -40,6 +41,7 @@ class IndexView(LoginRequiredMixin, TemplateView):
 
     def get(self, request, *args, **kwargs):
         self.context["user_count"] = User.objects.all().exclude(is_staff=True).count()
+        self.context["employee_count"]=Employee.objects.all().count()
         return render(request, self.template_name, self.context)
 
 
@@ -52,13 +54,13 @@ class UserDetailView(MyDetailView):
     template_name = "core/adminuser/user_details.html"
     permission_required = ("core.view_user",)
 
-    def get_context_data(self, **kwargs):
-        """Get context data"""
+    def get(self, request, pk):
+        """Get User data"""
 
-        context = super().get_context_data(**kwargs)
-        user_data = User.objects.all().order_by("-id")
+        context = {}
+        user_data = User.objects.get(pk=pk)
         context["user_data"] = user_data
-        return context
+        return render(request, self.template_name, context)
 
 
 class UserListView(MyListView):
@@ -244,6 +246,7 @@ class UserListAjaxView(DataTableMixin, HasPermissionsMixin, MyLoginRequiredView)
                 "opts": opts,
                 "has_change_permission": self.has_change_permission(self.request),
                 "has_delete_permission": self.has_delete_permission(self.request),
+                "has_view_permission": self.has_view_permission(self.request),
             }
         )
 

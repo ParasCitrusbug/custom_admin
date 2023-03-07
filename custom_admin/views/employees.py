@@ -3,20 +3,20 @@ This is a view module to define list, create, update, delete views.
 You can define different view properties here.
 """
 from django.db.models import Q
-from django.views.generic.edit import CreateView
-from django.shortcuts import render
-from django.http import JsonResponse
-from django.template.loader import get_template
-from custom_admin.forms.employees import MyEmployeeCreationForm, EmployeeChangeForm
-from custom_admin.mixins import HasPermissionsMixin
 from django_datatables_too.mixins import DataTableMixin
+from django.http import JsonResponse
+from django.shortcuts import render
+from django.template.loader import get_template
+
+from custom_admin.mixins import HasPermissionsMixin
+from custom_admin.forms.employees import MyEmployeeCreationForm, EmployeeChangeForm
 from custom_admin.views.generic import (
     MyLoginRequiredView,
     MyUpdateView,
     MyListView,
     MyDetailView,
     MyDeleteView,
-    MyCreateView
+    MyCreateView,
 )
 from employee.models import Employee
 
@@ -27,16 +27,16 @@ class EmployeeDetailView(MyDetailView):
     """
 
     model = Employee
-    template_name = "core/adminemployee/employee_detail.html"
+    template_name = "core/adminemployee/employee_details.html"
     permission_required = ("core.view_user",)
 
-    def get_context_data(self, **kwargs):
-        """Get context data"""
-
-        context = super().get_context_data(**kwargs)
-        employee_data = Employee.objects.all().order_by("-id")
+    def get(self, request, pk):
+        """Get Employee data"""
+        context = {}
+        employee_data = Employee.objects.get(pk=pk)
         context["employee_data"] = employee_data
-        return context
+
+        return render(request, self.template_name, context)
 
 
 class EmployeeListView(MyListView):
@@ -62,9 +62,9 @@ class EmployeeCreateView(MyCreateView):
 
     def get_context_data(self, **kwargs):
         """Get context data"""
+
         context = super(EmployeeCreateView, self).get_context_data()
         return context
-   
 
 
 class EmployeeUpdateView(MyUpdateView):
@@ -128,6 +128,7 @@ class EmployeeListAjaxView(DataTableMixin, HasPermissionsMixin, MyLoginRequiredV
                 "opts": opts,
                 "has_change_permission": self.has_change_permission(self.request),
                 "has_delete_permission": self.has_delete_permission(self.request),
+                "has_view_permission": self.has_view_permission(self.request),
             }
         )
 
@@ -152,6 +153,8 @@ class EmployeeListAjaxView(DataTableMixin, HasPermissionsMixin, MyLoginRequiredV
                     "employee_id": o.employee_id,
                     "phone_number": o.phone_number,
                     "address": o.address,
+                    "working": o.working,
+                    "department": o.department,
                     "actions": self._get_actions(o),
                 }
             )

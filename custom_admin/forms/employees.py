@@ -17,8 +17,16 @@ class MyEmployeeCreationForm(forms.ModelForm):
 
     class Meta:
         model = Employee
-        fields = ["name", "employee_id", "address", "phone_number", "department", "working","is_active"]
-    
+        fields = [
+            "name",
+            "employee_id",
+            "address",
+            "phone_number",
+            "department",
+            "working",
+            "is_active",
+        ]
+
     def save(self, commit=True):
         """
         save method to new employee storing it into the database.

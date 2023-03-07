@@ -5,6 +5,7 @@ from dataclasses import dataclass, field
 from django.contrib.auth.models import AbstractUser, UserManager
 
 from employee.models import ActivityTracking
+
 # Create your models here.
 @dataclass(frozen=True)
 class UserID:

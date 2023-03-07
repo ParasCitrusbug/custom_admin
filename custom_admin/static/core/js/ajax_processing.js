@@ -30,6 +30,8 @@ $(document).ready(function () {
             { data: 'employee_id', name: 'employee_id' },
             { data: 'phone_number', name: 'phone_number' },
             { data: 'address', name: 'address' },
+            { data: 'working', name: 'working' },
+            { data: 'department', name: 'department' },
             { data: 'actions', name: 'actions' },
         ],
     });

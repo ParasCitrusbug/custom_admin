@@ -53,6 +53,14 @@ def admin_urlquote(value):
     return quote(value)
 
 
+@register.filter
+def upper(value):
+    return value.upper()
+
+
+
+
+
 @register.simple_tag
 def field_name(instance, field_name):
     """

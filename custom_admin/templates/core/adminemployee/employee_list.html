@@ -1,11 +1,11 @@
 {% extends 'core/change_list.html' %} 
 {% load static %}
- {% load admin_extras %}
+{% load admin_extras %}
 {% load misc_filters %} 
 {% load i18n %}
- {% block page_content %} 
- {% csrf_token%} 
- {% include "core/includes/list_header_card.html" with title="Create a new Employee" subtitle="Create a new user and assign with individual or group permissions." show_button=True %}
+{% block page_content %} 
+{% csrf_token%} 
+{% include "core/includes/list_header_card.html" with title="Create a new Employee" subtitle="Create a new employee and assign with individual or group permissions." show_button=True %}
 
 <div class="ibox float-e-margins">
 	{% comment %}
@@ -35,6 +35,8 @@
 						<th>Employee_ID</th>
 						<th>Phone Number</th>
 						<th>Address</th>
+						<th>Working</th>
+						<th>Department</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -45,6 +47,8 @@
 						<th>Employee_ID</th>
 						<th>Phone Number</th>
 						<th>Address</th>
+						<th>Working</th>
+						<th>Department</th>
 						<th>Action</th>
 					</tr>
 				</tfoot>
