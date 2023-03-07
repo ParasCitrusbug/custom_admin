@@ -36,12 +36,14 @@ from employee.models import Employee
 
 
 class IndexView(LoginRequiredMixin, TemplateView):
+    """This for Total count of data user and employee"""
+
     template_name = "core/index.html"
     context = {}
 
     def get(self, request, *args, **kwargs):
         self.context["user_count"] = User.objects.all().exclude(is_staff=True).count()
-        self.context["employee_count"]=Employee.objects.all().count()
+        self.context["employee_count"] = Employee.objects.all().count()
         return render(request, self.template_name, self.context)
 
 
@@ -261,7 +263,7 @@ class UserListAjaxView(DataTableMixin, HasPermissionsMixin, MyLoginRequiredView)
 
     def prepare_results(self, qs):
         """Prepare final result data here."""
-        # Create row data for datatables
+        # Create row data for data tables
         data = []
         for o in qs:
             data.append(

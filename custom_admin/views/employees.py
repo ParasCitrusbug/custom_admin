@@ -1,5 +1,5 @@
 """
-This is a view module to define list, create, update, delete views.
+This is a view module to define list, create, update, delete views for Employee.
 You can define different view properties here.
 """
 from django.db.models import Q
