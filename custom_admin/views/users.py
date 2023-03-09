@@ -65,6 +65,7 @@ class UserDetailView(MyDetailView):
         return render(request, self.template_name, context)
 
 
+
 class UserListView(MyListView):
     """
     View for User listing
@@ -135,7 +136,7 @@ class UserUpdateView(MyUpdateView):
         return kwargs
 
     def get_success_url(self):
-        return reverse("core:index")
+        return reverse("user-list")
 
 
 class UserPasswordView(MyUpdateView):

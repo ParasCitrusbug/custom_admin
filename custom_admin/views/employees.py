@@ -5,8 +5,9 @@ You can define different view properties here.
 from django.db.models import Q
 from django_datatables_too.mixins import DataTableMixin
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render,reverse, redirect
 from django.template.loader import get_template
+from django.urls import reverse_lazy
 
 from custom_admin.mixins import HasPermissionsMixin
 from custom_admin.forms.employees import MyEmployeeCreationForm, EmployeeChangeForm
@@ -38,6 +39,8 @@ class EmployeeDetailView(MyDetailView):
 
         return render(request, self.template_name, context)
 
+    
+
 
 class EmployeeListView(MyListView):
     """
@@ -65,6 +68,9 @@ class EmployeeCreateView(MyCreateView):
 
         context = super(EmployeeCreateView, self).get_context_data()
         return context
+    def get_success_url(self):
+        return reverse("employee:employee-list")
+    
 
 
 class EmployeeUpdateView(MyUpdateView):
@@ -79,6 +85,9 @@ class EmployeeUpdateView(MyUpdateView):
 
     def get_context_data(self, **kwargs):
         return super().get_context_data(**kwargs)
+    def get_success_url(self):
+        return reverse("employee:employee-list")
+    
 
 
 class EmployeeDeleteView(MyDeleteView):
@@ -99,6 +108,8 @@ class EmployeeDeleteView(MyDeleteView):
             response_data["message"] = self.get_success_message()
             return JsonResponse(response_data)
         return response
+    def get_success_url(self):
+        return reverse("employee:employee-list")
 
 
 class EmployeeListAjaxView(DataTableMixin, HasPermissionsMixin, MyLoginRequiredView):

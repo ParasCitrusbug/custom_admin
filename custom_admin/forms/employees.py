@@ -2,7 +2,7 @@
 This is file where the django documentation recommends you place all
 your forms code, to keep your code easily maintainable.
 """
-
+import re
 from django import forms
 
 from employee.models import Employee
@@ -53,3 +53,12 @@ class EmployeeChangeForm(forms.ModelForm):
             "department",
             "is_active",
         ]
+
+    def clean(self):
+        cleaned_data = super(EmployeeChangeForm, self).clean()
+        phone_number = cleaned_data.get("phone_number")
+        regex = re.compile("^\\d{10}$")
+        matcher = re.match(regex,str(phone_number))
+
+        if not matcher:
+            raise forms.ValidationError("Please add valid number.")
