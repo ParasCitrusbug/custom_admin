@@ -2,14 +2,13 @@
 {% load i18n %}
 {% load admin_extras %}
 {% load misc_filters %}
-
 <header class="list-header card mb-4">
   <div class="card-body clearfix">
     <div class="float-left">
       <h5 class="card-title">{{ title }}</h5>
+      {{opts.verbose_name_plural}}
       <p class="card-subtitle text-muted">{{ subtitle }}</p>
     </div>
-
     {% if has_add_permission and show_button %}
       <div class="float-right lead">
       {% if opts.verbose_name_plural == 'groups' %} 

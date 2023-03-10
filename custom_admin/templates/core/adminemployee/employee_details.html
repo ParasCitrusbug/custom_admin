@@ -28,17 +28,20 @@
 		
 				<tbody>
 					<tr>
-						<td>{{ employee_data.name|upper }}</td>
-						<td>{{ employee_data.employee_id }}</td>
-						<td>{{ employee_data.phone_number }}</td>
-						<td>{{ employee_data.address }}</td>
-						<td>{% show_check employee_data.is_active %}</td>
-						<td>{% show_check employee_data.working %}</td>
-						<td>{{ employee_data.department }}</td>
+						<td>{{ object.name|upper }}</td>
+						<td>{{ object.address }}</td>
+						<td>{{ object.phone_number }}</td>
+						<td>{{ object.address }}</td>
+						<td>{% show_check object.is_active %}</td>
+						<td>{% show_check object.working %}</td>
+						<td>{{ object.department }}</td>
+						
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
 </div>
-{% endblock %} {% block js %} {{ block.super }} {% endblock %}
+{% endblock %} {% block js %} {{ block.super }}
+
+{% endblock %}

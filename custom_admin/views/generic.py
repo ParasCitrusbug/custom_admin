@@ -1,16 +1,21 @@
 from django.contrib import messages
 from django.contrib.auth import get_permission_codename
-from django.contrib.auth.mixins import (LoginRequiredMixin,
-                                        PermissionRequiredMixin)
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.utils.translation import gettext as _
-from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
-                                  TemplateView, UpdateView, View)
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    TemplateView,
+    UpdateView,
+    View,
+)
 from django.views.generic.dates import DayArchiveView, TodayArchiveView
 from django.views.generic.edit import FormView
-from extra_views import (CreateWithInlinesView, NamedFormsetsMixin,
-                         UpdateWithInlinesView)
+from extra_views import CreateWithInlinesView, NamedFormsetsMixin, UpdateWithInlinesView
 from multi_form_view import MultiModelFormView
 
 from ..mixins import HasPermissionsMixin, ModelOptsMixin, SuccessMessageMixin

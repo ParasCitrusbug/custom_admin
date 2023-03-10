@@ -37,6 +37,13 @@ class MyEmployeeCreationForm(forms.ModelForm):
 
         return instance
 
+    def clean(self):
+        cleaned_data = super(MyEmployeeCreationForm, self).clean()
+        phone_number = cleaned_data.get("phone_number")
+        regex = re.compile("^\\d{10}$")
+        if not re.match(regex, str(phone_number)):
+            raise forms.ValidationError("Please add valid number.")
+
 
 class EmployeeChangeForm(forms.ModelForm):
 
@@ -58,7 +65,5 @@ class EmployeeChangeForm(forms.ModelForm):
         cleaned_data = super(EmployeeChangeForm, self).clean()
         phone_number = cleaned_data.get("phone_number")
         regex = re.compile("^\\d{10}$")
-        matcher = re.match(regex,str(phone_number))
-
-        if not matcher:
+        if not re.match(regex, str(phone_number)):
             raise forms.ValidationError("Please add valid number.")

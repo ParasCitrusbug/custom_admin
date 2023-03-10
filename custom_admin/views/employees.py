@@ -5,7 +5,7 @@ You can define different view properties here.
 from django.db.models import Q
 from django_datatables_too.mixins import DataTableMixin
 from django.http import JsonResponse
-from django.shortcuts import render,reverse, redirect
+from django.shortcuts import render, reverse, redirect
 from django.template.loader import get_template
 from django.urls import reverse_lazy
 
@@ -31,15 +31,16 @@ class EmployeeDetailView(MyDetailView):
     template_name = "core/adminemployee/employee_details.html"
     permission_required = ("core.view_user",)
 
-    def get(self, request, pk):
-        """Get Employee data"""
-        context = {}
-        employee_data = Employee.objects.get(pk=pk)
-        context["employee_data"] = employee_data
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        return ctx
 
-        return render(request, self.template_name, context)
+    def get(self, request, pk, *args, **kwargs):
+        return super().get(self, request, *args, **kwargs)
 
-    
+    def get_success_url(self):
+        opts = self.model._meta
+        return reverse("employee:employee-list")
 
 
 class EmployeeListView(MyListView):
@@ -68,9 +69,9 @@ class EmployeeCreateView(MyCreateView):
 
         context = super(EmployeeCreateView, self).get_context_data()
         return context
+
     def get_success_url(self):
         return reverse("employee:employee-list")
-    
 
 
 class EmployeeUpdateView(MyUpdateView):
@@ -85,9 +86,9 @@ class EmployeeUpdateView(MyUpdateView):
 
     def get_context_data(self, **kwargs):
         return super().get_context_data(**kwargs)
+
     def get_success_url(self):
         return reverse("employee:employee-list")
-    
 
 
 class EmployeeDeleteView(MyDeleteView):
@@ -108,6 +109,7 @@ class EmployeeDeleteView(MyDeleteView):
             response_data["message"] = self.get_success_message()
             return JsonResponse(response_data)
         return response
+
     def get_success_url(self):
         return reverse("employee:employee-list")
 

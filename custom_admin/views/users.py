@@ -56,14 +56,16 @@ class UserDetailView(MyDetailView):
     template_name = "core/adminuser/user_details.html"
     permission_required = ("core.view_user",)
 
-    def get(self, request, pk):
-        """Get User data"""
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        return ctx
 
-        context = {}
-        user_data = User.objects.get(pk=pk)
-        context["user_data"] = user_data
-        return render(request, self.template_name, context)
+    def get(self, request, pk, *args, **kwargs):
+        return super().get(self, request, *args, **kwargs)
 
+    def get_success_url(self):
+        opts = self.model._meta
+        return reverse("user:user-list")
 
 
 class UserListView(MyListView):

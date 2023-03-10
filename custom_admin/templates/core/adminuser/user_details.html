@@ -38,13 +38,13 @@
 				</tfoot>
 				<tbody>
 					<tr>
-						<td>{{ user_data.first_name }}</td>
-						<td>{{ user_data.last_name }}</td>
-						<td>{{ user_data.email }}</td>
-						<td>{{ user_data.username }}</td>
-						<td>{% show_check user_data.is_active %}</td>
-						<td>{{ user_data.is_new_user }}</td>
-						<td>{{ user_data.created_at }}</td>
+						<td>{{ object.first_name }}</td>
+						<td>{{ object.last_name }}</td>
+						<td>{{ object.email }}</td>
+						<td>{{ object.username }}</td>
+						<td>{% show_check object.is_active %}</td>
+						<td>{{ object.is_new_user }}</td>
+						<td>{{ object.created_at }}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -52,4 +52,3 @@
 	</div>
 </div>
 {% endblock %} {% block js %} {{ block.super }} {% endblock %}
-<script src="{% static 'core/js/ajax_processing.js' %}"></script>
